@@ -6,7 +6,7 @@ const NewBoard = ({ categories }) => {
   const apiKey = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
-    const url = `https://newsapi.org/v2/top-headlines?country=in&category=${categories}&apiKey=${apiKey}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=in&category=${categories}&apiKey=ecfe99c8ddb64986ad9ca1e8b2309fd9`;
 
     fetch(url)
       .then((res) => res.json())
