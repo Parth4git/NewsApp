@@ -4,22 +4,34 @@ import NewsItem from "./newsItem";
 const NewBoard = ({ categories }) => {
   const [articles, setArticles] = useState([]);
   const apiKey = import.meta.env.VITE_API_KEY;
-
   useEffect(() => {
-    const url = `https://newsapi.org/v2/top-headlines?country=in&category=${categories}&apiKey=${apiKey}`;
+    const fetchArticles = async () => {
+      const url = `https://newsapi.org/v2/top-headlines?country=in&category=${categories}&apiKey=${apiKey}`;
 
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
+      try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          if (response.status === 426) {
+            throw new Error(
+              "426 (Upgrade Required): Please check if you are using HTTPS and if there are any specific requirements from the server."
+            );
+          }
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
         if (data.articles) {
           setArticles(data.articles);
         }
         console.log(data.articles);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching data:", error);
-      });
-  }, [categories]);
+      }
+    };
+
+    fetchArticles();
+  }, [categories, apiKey]);
 
   return (
     <div className="container">
