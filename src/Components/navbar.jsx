@@ -3,10 +3,10 @@ import React from "react";
 const navbar = ({ setCategories }) => {
   return (
     <nav
-      className="navbar navbar-expand-lg bg-body-tertiary"
+      className="navbar navbar-expand-lg bg-body-tertiary cursor-pointer"
       data-bs-theme="dark"
     >
-      <div className="container-fluid">
+      <div className="container-fluid cursor-pointer">
         <a className="navbar-brand" href="/">
           <span className="badge rounded-pill bg-secondary">News Point</span>
         </a>
