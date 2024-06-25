@@ -10,7 +10,12 @@ const NewBoard = ({ categories }) => {
       const url = `https://newsapi.org/v2/top-headlines?country=in&category=${categories}&apiKey=${apiKey}`;
 
       try {
-        const response = await axios.get(url);
+        const response = await axios.get(url, {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
 
         if (response.status === 426) {
           throw new Error(
