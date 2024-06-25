@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NewsItem from "./newsItem";
+import axios from "axios";
 
 const NewBoard = ({ categories }) => {
   const [articles, setArticles] = useState([]);
@@ -9,22 +10,18 @@ const NewBoard = ({ categories }) => {
       const url = `https://newsapi.org/v2/top-headlines?country=in&category=${categories}&apiKey=${apiKey}`;
 
       try {
-        const response = await fetch(url);
+        const response = await axios.get(url);
 
-        if (!response.ok) {
-          if (response.status === 426) {
-            throw new Error(
-              "426 (Upgrade Required): Please check if you are using HTTPS and if there are any specific requirements from the server."
-            );
-          }
-          throw new Error(`HTTP error! Status: ${response.status}`);
+        if (response.status === 426) {
+          throw new Error(
+            "426 (Upgrade Required): Please check if you are using HTTPS and if there are any specific requirements from the server."
+          );
         }
 
-        const data = await response.json();
-        if (data.articles) {
-          setArticles(data.articles);
+        if (response.data.articles) {
+          setArticles(response.data.articles);
         }
-        console.log(data.articles);
+        console.log(response.data.articles);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
