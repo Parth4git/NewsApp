@@ -1,77 +1,60 @@
 import React from "react";
 
-const navbar = ({ setCategories }) => {
+const Navbar = ({ setCategory }) => {
   return (
     <nav
-      className="navbar navbar-expand-lg bg-body-tertiary cursor-pointer"
+      className="navbar navbar-expand-lg bg-body-tertiary"
       data-bs-theme="dark"
     >
-      <div className="container-fluid cursor-pointer">
-        <a className="navbar-brand" href="/">
-          <span className="badge rounded-pill bg-secondary">News Point</span>
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">
+          <span className="badge text-bg-light">News App</span>
         </a>
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <div
-                className="nav-link"
-                onClick={() => {
-                  setCategories("technology");
-                }}
-              >
-                Technology
-              </div>
+              <a className="nav-link" onClick={() => setCategory("business")}>
+                Business{" "}
+              </a>
             </li>
             <li className="nav-item">
-              <div
+              <a
                 className="nav-link"
-                onClick={() => {
-                  setCategories("business");
-                }}
-              >
-                Business
-              </div>
-            </li>
-            <li className="nav-item">
-              <div
-                className="nav-link"
-                onClick={() => {
-                  setCategories("sports");
-                }}
-              >
-                Sports
-              </div>
-            </li>
-            <li className="nav-item">
-              <div
-                className="nav-link"
-                onClick={() => {
-                  setCategories("health");
-                }}
-              >
-                Health
-              </div>
-            </li>
-            <li className="nav-item">
-              <div
-                className="nav-link"
-                onClick={() => {
-                  setCategories("entertainment");
-                }}
+                onClick={() => setCategory("entertainment")}
               >
                 Entertainment
-              </div>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" onClick={() => setCategory("health")}>
+                Health
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" onClick={() => setCategory("science")}>
+                Science
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" onClick={() => setCategory("sports")}>
+                Sports
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" onClick={() => setCategory("technology")}>
+                Technology
+              </a>
             </li>
           </ul>
         </div>
@@ -80,4 +63,4 @@ const navbar = ({ setCategories }) => {
   );
 };
 
-export default navbar;
+export default Navbar;
